@@ -22,7 +22,7 @@ import java.util.Objects;
 @NamedQueries({
         @NamedQuery(name = "Country.countAll", query = "SELECT COUNT(c) FROM Country c"),
         @NamedQuery(name = "Country.findByName", query = "SELECT c FROM Country c WHERE c.country_name = :country_name"),
-        @NamedQuery(name = "Country.findAll", query = "SELECT c FROM Country c")
+        @NamedQuery(name = "Country.findAll", query = "SELECT c FROM Country c ORDER BY c.country_name")
 })
 public class Country {
     @Id
@@ -36,6 +36,7 @@ public class Country {
 
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
     @XmlTransient
+    @ToString.Exclude
     private List<Address> addresses = new ArrayList<>();
 
     public void addAddress (Address address) {

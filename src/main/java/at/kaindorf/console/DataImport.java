@@ -27,9 +27,7 @@ import java.util.stream.Collectors;
 public class DataImport {
     private EntityManagerFactory emf;
     private EntityManager em;
-
     private Scanner scanner;
-
     private final List<Country> countries = new ArrayList<>();
 
     public static void main(String[] args) {
@@ -40,6 +38,7 @@ public class DataImport {
         //dataImport.importJSON();
         dataImport.countAllImports();
 
+        dataImport.getAllCountries();
         dataImport.findFromCountry();
         dataImport.findByYear();
 
@@ -60,8 +59,6 @@ public class DataImport {
         File file = Paths.get(System.getProperty("user.dir"), "src", "main", "resources", "customers.xml").toFile();
         Customers customers = JAXB.unmarshal(file, Customers.class);
         importData(customers.getCustomers());
-
-        System.out.println(customers.getCustomers());
     }
 
     public void importJSON() {
@@ -114,16 +111,24 @@ public class DataImport {
         System.out.println("Geben Sie ein Land ein: ");
         System.out.println("------------------------------------------");
         String countryName = scanner.nextLine();
-        List<Customer> customers = em.createNamedQuery("Customer.findFromCountry", Customer.class).setParameter("country", countryName).getResultList();
-        customers.forEach(System.out::println);
+        em.createNamedQuery("Customer.findFromCountry", Customer.class)
+                .setParameter("country", countryName)
+                .getResultList()
+                .forEach(System.out::println);
+    }
+
+    public void getAllCountries () {
+        System.out.println("------------------------------------------");
+        System.out.println("Get all Countries ");
+        System.out.println("------------------------------------------");
+        em.createNamedQuery("Country.findAll", Country.class).getResultList().forEach(System.out::println);
     }
 
     public void findByYear () {
         System.out.println("------------------------------------------");
         System.out.println("Get all Years: ");
         System.out.println("------------------------------------------");
-        List<Integer> allYears = em.createNamedQuery("Customer.findYears", Integer.class).getResultList();
-        allYears.forEach(System.out::println);
+        em.createNamedQuery("Customer.findYears", Integer.class).getResultList().forEach(System.out::println);
     }
 
 
