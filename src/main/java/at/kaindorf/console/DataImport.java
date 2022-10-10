@@ -122,7 +122,7 @@ public class DataImport {
         System.out.println("------------------------------------------");
         System.out.println("Get all Years: ");
         System.out.println("------------------------------------------");
-        List<BigDecimal> allYears = em.createNamedQuery("Customer.findYears", BigDecimal.class).getResultList();
+        List<Integer> allYears = em.createNamedQuery("Customer.findYears", Integer.class).getResultList();
         allYears.forEach(System.out::println);
     }
 

@@ -27,7 +27,7 @@ import java.util.Objects;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @NamedQueries({
         @NamedQuery(name = "Customer.countAll", query = "SELECT COUNT(c) FROM Customer c"),
-        @NamedQuery(name = "Customer.findYears", query = "SELECT DISTINCT EXTRACT(YEAR FROM c.since) FROM Customer c"),
+        @NamedQuery(name = "Customer.findYears", query = "SELECT DISTINCT cast(EXTRACT(YEAR FROM c.since) as int) as years FROM Customer c ORDER BY years"),
         @NamedQuery(name = "Customer.findFromCountry", query = "SELECT c FROM Customer c WHERE c.address.country.country_name = :country")
 })
 public class Customer {
