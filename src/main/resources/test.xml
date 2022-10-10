@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+    <customer>
+    <country>Germany</country>
+    <country_code>DE</country_code>
+    <city>Kiel</city>
+    <postal_code>24109</postal_code>
+    <streetname>Westerfield</streetname>
+    <streetnumber>93727</streetnumber>
+    <firstname>Timoteo</firstname>
+    <lastname>Meindl</lastname>
+    <gender>M</gender>
+    <active>true</active>
+    <email>tmeindl0@icio.us</email>
+    <since>28-Jul-2000</since>
+    </customer>
