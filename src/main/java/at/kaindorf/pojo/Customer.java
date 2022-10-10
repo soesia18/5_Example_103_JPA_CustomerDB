@@ -40,8 +40,10 @@ public class Customer {
     private String lastname;
     @XmlJavaTypeAdapter(CharacterAdapter.class)
     @NonNull
+    @Column(nullable = false)
     private char gender;
     @NonNull
+    @Column(nullable = false)
     private boolean active;
     @NonNull
     private String email;
